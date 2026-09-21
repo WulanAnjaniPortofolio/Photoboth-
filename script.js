@@ -432,23 +432,23 @@ async function createResult() {
 
     const doodleFiles = [
 
-        "assets/doodle-a.png",
+        "doodle-a.png",
 
-        "assets/doodle-b.png",
+        "doodle-b.png",
 
-        "assets/doodle-c.png",
+        "doodle-c.png",
 
-        "assets/doodle-d.png",
+        "doodle-d.png",
 
-        "assets/doodle-e.png",
+        "doodle-e.png",
 
-        "assets/doodle-f.png",
+        "doodle-f.png",
 
-        "assets/bintang.png",
+        "bintang.png",
 
-        "assets/ayam-paha.png",
+        "ayam-paha.png",
 
-        "assets/gelato-cup.png"
+        "gelato-cup.png"
 
     ];
 
@@ -578,7 +578,7 @@ async function createResult() {
 
     const logo =
         await safeLoadImage(
-            "assets/logo-pse.png"
+            "logo-pse.png"
         );
 
 

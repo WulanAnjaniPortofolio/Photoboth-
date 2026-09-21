@@ -1,222 +1,91 @@
 <!DOCTYPE html>
 <html lang="id">
-
 <head>
     <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0">
-
-    <title>PSE Photo Booth</title>
-
-    <link
-        rel="stylesheet"
-        href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pojok Santai Enak - Photo Booth</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&display=swap" rel="stylesheet">
 </head>
-
-
 <body>
 
-
-    <!-- =========================
-         HOME
-    ========================== -->
-
-    <section
-        id="home"
-        class="page active">
-
-        <img
-            src="assets/logo-pse.png"
-            class="home-logo"
-            alt="Pojok Santai Enak">
-
-        <h1>PHOTO BOOTH</h1>
-
-        <p class="welcome-text">
-            Abadikan momen seru kamu
-            <br>
-            di Pojok Santai Enak
-        </p>
-
-
-        <img
-            src="assets/gelato-cup.png"
-            class="home-decoration gelato-decoration"
-            alt="">
-
-        <img
-            src="assets/ayam-paha.png"
-            class="home-decoration chicken-decoration"
-            alt="">
-
-
-        <button
-            id="startBtn"
-            class="main-button">
-
-            MULAI FOTO
-
+    <!-- HALAMAN 1: Landing Page -->
+    <div id="screen-landing" class="screen active">
+        <div class="decoration">
+            <img src="ayam.png" class="deco-ayam" alt="Ayam">
+            <img src="gelato-cup.png" class="deco-gelato" alt="Gelato">
+            <img src="doodle-hati.png" class="deco-hati" alt="Hati">
+            <img src="doodle-a.png" class="deco-star1" alt="Star">
+        </div>
+        
+        <img src="logo-pse.png" class="logo" alt="Pojok Santai Enak">
+        <h1 class="title">Photo Booth</h1>
+        <p class="subtitle">Abadikan momen seru kamu<br>di Pojok Santai Enak!</p>
+        
+        <button id="btn-mulai" class="btn-primary">
+            📷 Mulai Foto ➔
         </button>
 
-
-        <div class="instruction">
-
-            <div class="instruction-item">
-                <strong>01</strong>
-                <span>
-                    Izinkan<br>
-                    Kamera
-                </span>
-            </div>
-
-            <div class="instruction-item">
-                <strong>02</strong>
-                <span>
-                    Pose
-                </span>
-            </div>
-
-            <div class="instruction-item">
-                <strong>03</strong>
-                <span>
-                    Foto<br>
-                    3x
-                </span>
-            </div>
-
-            <div class="instruction-item">
-                <strong>04</strong>
-                <span>
-                    Download
-                </span>
-            </div>
-
+        <div class="steps-guide">
+            <div class="step"><span>📷</span><p>1. Izinkan Akses Kamera</p></div>
+            <div class="step"><span>🕒</span><p>2. Countdown 3...2...1</p></div>
+            <div class="step"><span>📸</span><p>3. Ambil 3 Foto</p></div>
+            <div class="step"><span>📥</span><p>4. Download Hasil</p></div>
         </div>
+    </div>
 
-    </section>
+    <!-- MODAL: Izin Kamera -->
+    <div id="modal-izin" class="modal hidden">
+        <div class="modal-content">
+            <img src="logo-pse.png" class="modal-logo" alt="Logo">
+            <h3>📷 Izinkan situs ini mengakses kamera?</h3>
+            <p>Kami memerlukan akses kamera untuk mengambil foto kamu.</p>
+            <div class="modal-actions">
+                <button id="btn-tolak" class="btn-secondary">Tolak</button>
+                <button id="btn-izinkan" class="btn-primary">Izinkan</button>
+            </div>
+        </div>
+    </div>
 
-
-
-    <!-- =========================
-         CAMERA
-    ========================== -->
-
-    <section
-        id="cameraPage"
-        class="page camera-page">
-
+    <!-- HALAMAN 3 & 4: Kamera & Countdown -->
+    <div id="screen-camera" class="screen hidden">
         <div class="camera-container">
-
-            <video
-                id="video"
-                autoplay
-                playsinline>
-            </video>
-
-
-            <div
-                id="countdown"
-                class="countdown">
+            <video id="camera-feed" autoplay playsinline></video>
+            <!-- Overlay Countdown -->
+            <div id="countdown-overlay" class="hidden">
+                <span id="countdown-number">3</span>
             </div>
+            <!-- Flash Effect -->
+            <div id="flash-effect" class="hidden"></div>
+        </div>
+        
+        <div class="camera-controls">
+            <span id="photo-counter">0/3</span>
+            <button id="btn-capture" class="btn-capture" disabled></button>
+            <button id="btn-switch-cam" class="btn-icon">🔄</button>
+        </div>
+    </div>
 
-
-            <img
-                src="assets/doodle-hati.png"
-                class="camera-decoration camera-heart"
-                alt="">
-
-
-            <img
-                src="assets/ayam-sayap.png"
-                class="camera-decoration camera-chicken"
-                alt="">
-
+    <!-- HALAMAN 5: Preview & Hasil -->
+    <div id="screen-preview" class="screen hidden">
+        <img src="logo-pse.png" class="logo-small" alt="Logo">
+        <h2>Foto kamu sudah siap!</h2>
+        <p>Ingin mengunduh hasil fotonya?</p>
+        
+        <div class="preview-photos" id="preview-container">
+            <!-- Hasil jepretan akan muncul di sini -->
         </div>
 
-
-        <p
-            id="photoNumber"
-            class="photo-number">
-
-            Foto 1 dari 3
-
-        </p>
-
-
-        <button
-            id="captureBtn"
-            class="capture-button">
-
-            FOTO
-
-        </button>
-
-    </section>
-
-
-
-    <!-- =========================
-         RESULT
-    ========================== -->
-
-    <section
-        id="resultPage"
-        class="page result-page">
-
-        <h2>
-            Foto kamu sudah siap!
-        </h2>
-
-        <p class="result-description">
-            Simpan kenanganmu dari
-            <br>
-            Pojok Santai Enak.
-        </p>
-
-
-        <div class="result-container">
-
-            <canvas
-                id="resultCanvas">
-            </canvas>
-
+        <div class="preview-actions">
+            <button id="btn-download" class="btn-primary">📥 Download Foto</button>
+            <button id="btn-ulang" class="btn-secondary">🔄 Ambil Ulang</button>
         </div>
+    </div>
 
-
-        <button
-            id="downloadBtn"
-            class="main-button">
-
-            DOWNLOAD FOTO
-
-        </button>
-
-
-        <button
-            id="retryBtn"
-            class="secondary-button">
-
-            AMBIL ULANG
-
-        </button>
-
-    </section>
-
-
-
-    <!-- Canvas foto mentah -->
-
-    <canvas
-        id="photoCanvas"
-        style="display:none;">
-    </canvas>
-
-
+    <!-- Canvas tersembunyi untuk proses gambar -->
+    <canvas id="canvas-capture" class="hidden"></canvas>
+    <canvas id="canvas-strip" class="hidden"></canvas>
 
     <script src="script.js"></script>
-
 </body>
-
 </html>
